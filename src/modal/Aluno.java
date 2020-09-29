@@ -12,6 +12,27 @@ public class Aluno {
     private String matricula;
     private String curso;
 
+    //MÉTODO DE CRIAÇÃO DA MATRICULA
+    public void criaMatricula(){
+        Date date = new Date();
+
+        DateFormat formatData = new SimpleDateFormat("YYYYMMddHHmmss");
+        String dataDaMatricula = formatData.format(date);
+
+        Random random = new Random();
+
+        Integer matricula = random.nextInt((100 - 1) + 1) + 1;
+
+        String id = String.format("%02d", matricula);
+
+        matricula = random.nextInt((2 - 1) + 1) + 1;
+
+        String semetre = String.format("%02d", matricula);
+
+        this.matricula = dataDaMatricula + "-" + id + "-" + semetre;
+
+    }
+
 
 
     public String getCpf() {
@@ -44,21 +65,6 @@ public class Aluno {
     }
 
     public void setMatricula() {
-        Date date = new Date();
-
-        DateFormat formatData = new SimpleDateFormat("YYYYMMddHHmmss");
-        String dataDaMatricula = formatData.format(date);
-
-        Random random = new Random();
-
-        Integer matricula = random.nextInt((100 - 1) + 1) + 1;
-
-        String id = String.format("%02d", matricula);
-
-        matricula = random.nextInt((2 - 1) + 1) + 1;
-
-        String semetre = String.format("%02d", matricula);
-
-        this.matricula = dataDaMatricula + "-" + id + "-" + semetre;
+        criaMatricula();
     }
 }
