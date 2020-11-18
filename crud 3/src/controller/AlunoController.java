@@ -1,54 +1,48 @@
 package controller;
 
-import helper.Helper;
 import controller.inteface.IAluno;
+import helper.HelperDatabase;
 import modal.Aluno;
 
-import java.util.Scanner;
+import java.util.List;
 
-public class AlunoController implements IAluno{
-
-    private final String ARQUIVO_CSV = "aluno.csv";
-    private final String separador = ",";
+public class AlunoController implements IAluno {
 
 
     @Override
     public void criaAluno(Aluno aluno) {
 
-        aluno.setMatricula();
-        Helper helper = Helper.getInst();
-        helper.armazenarCSV(aluno);
+        aluno.criaMatricula();
+        HelperDatabase databaseHelper = HelperDatabase.getInst();
+        databaseHelper.criaAluno(aluno);
 
 
     }
 
     @Override
-    public String buscaAluno(String cpf) {
+    public List<Aluno> buscaAluno() {
 
-        Helper helper = Helper.getInst();
-        return helper.lerArquivoCSV();
+        HelperDatabase databaseHelper = HelperDatabase.getInst();
+        return databaseHelper.buscaAluno();
 
-
-
-    }
-
-    @Override
-    public void atualizaAluno(Aluno aluno ) {
-
-            Scanner scan = new Scanner(System.in);
-
-            System.out.println("Novo Nome do Aluno: ");
-            aluno.setNome(scan.nextLine());
-            System.out.println("Novo Curso do Aluno: ");
-            aluno.setCurso(scan.nextLine());
-
-            System.out.println("\nAluno atualizado com sucesso!\n");
 
     }
 
     @Override
-    public boolean deletaAluno(Aluno aluno) {
-        Helper helper = Helper.getInst();
-        return helper.deletarCSV();
+    public void atualizaAluno(String cpf, String nome, String curso) {
+        HelperDatabase databaseHelper = HelperDatabase.getInst();
+        databaseHelper.atualizaAluno(cpf, nome, curso);
+
+        System.out.println("\nAluno atualizado com sucesso!\n");
+
+    }
+
+    @Override
+    public boolean deletaAluno(String cpf) {
+
+
+        HelperDatabase databaseHelper = HelperDatabase.getInst();
+        return databaseHelper.deletaAluno(cpf);
+
     }
 }

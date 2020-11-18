@@ -6,14 +6,15 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 
+
 public class Aluno {
+
 
     private String cpf;
     private String nome;
     private String matricula;
     private String curso;
 
-    //MÉTODO DE CRIAÇÃO DA MATRICULA
     public void criaMatricula(){
         Date date = new Date();
 
@@ -65,7 +66,7 @@ public class Aluno {
         this.curso = curso;
     }
 
-    public void setMatricula() {
-        criaMatricula();
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }
